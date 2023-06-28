@@ -1,0 +1,17 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0px 3px 15px 0px rgba(34, 60, 80, 0.2);
+  min-height: 100px;
+  margin: 3px;
+  padding: 3px;
+  flex-direction: row-reverse;
+  background-color: #ffc7c7;
+
+}
+
+.header img {
+  width: 60px;
+}

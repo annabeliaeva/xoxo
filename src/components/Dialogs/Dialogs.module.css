@@ -1,0 +1,53 @@
+.dialogs {
+  display: flex;
+}
+
+.dialogs_row{
+  min-width: 100%;
+}
+
+.dialog_items {
+  padding: 7px;
+  border-radius: 15px;
+  flex-direction: column;
+  color: #2a0e1c;
+  text-decoration: none;
+  -webkit-box-shadow: 3px 2px 12px -2px rgba(34, 60, 80, 0.18);
+  -moz-box-shadow: 3px 2px 12px -2px rgba(34, 60, 80, 0.18);
+  box-shadow: 3px 2px 12px -2px rgba(34, 60, 80, 0.18);
+}
+
+.messages {
+  gap: 10px;
+  max-height: 800px;
+}
+
+.message {
+  flex-direction: row;
+}
+
+.padAndMar {
+  padding: 7px;
+  margin: 7px;
+}
+
+.dialog_and_send_block {
+  display: flex;
+  flex-direction: column;
+}
+
+.send_message_block {
+  align-self: center;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  position: sticky;
+  top: 850px;
+  left: 118px;
+}
+
+.button_send_message{
+  width: 150px;
+  align-self: flex-end;
+}

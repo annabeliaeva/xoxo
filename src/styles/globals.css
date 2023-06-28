@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+body {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  background-color: #ffe2e2;
+}
+
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.app-wrapper-content {
+  display: flex;
+  min-height: 800px;
+  /* Shorthand property specifying flex-grow, flex-shrink, and flex-basis. */
+  background-color: whitesmoke;
+  border-radius: 15px;
+}
+
+.container {
+  margin: 0 18%;
+}

@@ -1,0 +1,11 @@
+.main {
+    padding: 5px;
+    display: flex;
+    min-width: 500px;
+    flex-direction: column;
+    gap: 12px
+}
+
+.user_element {
+    flex-direction: row;
+}

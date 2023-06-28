@@ -1,0 +1,27 @@
+.infoBlock {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.statusBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar {
+    margin-top: 20px;
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+}
+
+.status {
+    align-self: flex-end;
+    margin-top: 20px;
+}
+
+.full_name {
+    font-weight: 600;
+}

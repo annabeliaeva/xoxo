@@ -1,0 +1,24 @@
+.dialog {
+  display: flex;
+  justify-content: center;
+  max-height: 35px;
+  color: black;
+  text-decoration: none;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 30px;
+  border-radius: 10px;
+}
+
+.name {
+  color: #dd6e7f;
+  text-decoration: none;
+}
+
+.card_body{
+  display: flex;
+  gap: 7px;
+}
