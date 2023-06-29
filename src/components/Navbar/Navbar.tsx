@@ -1,52 +1,28 @@
 import React from "react";
 
 import s from "./Navbar.module.css";
-import Link from "next/link";
+import { NavbarLink } from "./NavbarLink";
 
 const Navbar = () => {
   return (<nav className={`${s.nav}`}>
-    <div className={s.item}>
-      <Link
+      <NavbarLink
         href='/profile'
-        className={'active' ? `text-accent ${s.active}` : s.item}>
-        Profile
-      </Link>
-    </div>
-    <div className={s.item}>
-      <Link
+        label='Profile' />
+      <NavbarLink
         href='/dialogs'
-        className={'active' ? `text-accent ${s.active}` : s.item}>
-        Dialogs
-      </Link>
-    </div>
-    <div className={s.item}>
-      <Link
+        label='Dialogs' />
+      <NavbarLink
         href='/users'
-        className={'active' ? `text-accent ${s.active}` : s.item}>
-        Users
-      </Link>
-    </div>
-    <div className={s.item}>
-      <Link
+        label='Users' />
+      <NavbarLink
         href='/news'
-        className={'active' ? `text-accent ${s.active}` : s.item}>
-        News
-      </Link>
-    </div>
-    <div className={s.item}>
-      <Link
+        label='News' />
+      <NavbarLink
         href='/music'
-        className={'active' ? `text-accent ${s.active}` : s.item}>
-        Music
-      </Link>
-    </div>
-    <div className={s.item}>
-      <Link
+        label='Music' />
+      <NavbarLink
         href='/settings'
-        className={'active' ? `text-accent ${s.active}` : s.item}>
-        Settings
-      </Link>
-    </div>
+        label='Settings' />
   </nav>);
 }
 

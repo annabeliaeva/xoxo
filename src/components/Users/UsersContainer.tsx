@@ -1,36 +1,39 @@
 import React, { useState } from "react";
 import Users from "./Users";
 import { state as initialState } from '@/store'
+import { UserData } from "@/types/userData";
 
-const UsersContainer = (props) => {
+interface UsersContainerProps{
+  state: UserData[]
+} 
 
-  const [state, changeState] = useState(props.state)
+const UsersContainer = (props: UsersContainerProps) => {
 
-  let follow = (id) => {
-    changeState(state => {
-      return {
-        ...state,
-        users_page: {
-          users: state.users_page.users.map(u => {return (u.id === id) ? {...u, is_friend: true}: u})
-        }
-      }
-    })
-  }
+  const [state, setState] = useState(props.state)
 
-  let unfollow = (id) => {
-    changeState(state => {
-      return {
-        ...state,
-        users_page: {
-          users: state.users_page.users.map(u => {return (u.id === id) ? {...u, is_friend: false}: u})
-        }
-      }
-    })
-  }
+  // let follow = (id) => {
+  //   setState(state => {
+  //     return {
+  //       ...state,
+  //       users_page: {
+  //         users: state.users_page.users.map(u => {return (u.id === id) ? {...u, is_friend: true}: u})
+  //       }
+  //     }
+  //   })
+  // }
 
-  debugger
+  // let unfollow = (id) => {
+  //   setState(state => {
+  //     return {
+  //       ...state,
+  //       users_page: {
+  //         users: state.users_page.users.map(u => {return (u.id === id) ? {...u, is_friend: false}: u})
+  //       }
+  //     }
+  //   })
+  // }
 
-  return <Users users={state.users_page.users} follow={follow} unfollow={unfollow} />
+  return <Users users={state} />
 }
 
 export default UsersContainer;
