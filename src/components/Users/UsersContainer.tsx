@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Users from "./Users";
 import { state as initialState } from '@/store'
 
-const UsersContainer = () => {
+const UsersContainer = (props) => {
 
-  const [state, changeState] = useState(initialState)
+  const [state, changeState] = useState(props.state)
 
   let follow = (id) => {
     changeState(state => {

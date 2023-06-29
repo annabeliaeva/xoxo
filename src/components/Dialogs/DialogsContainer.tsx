@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { sendMessageActionCreator, updateMessageActionCreator } from "../../redux/dialogs_reducer";
 import Dialogs from "./Dialogs";
-import { state as initialState } from '@/store'
 
-const DialogsContainer = () => {
+const DialogsContainer = (props) => {
 
-  const [state, updateAndSendMessage] = useState(initialState)
+  const [state, updateAndSendMessage] = useState(props.state)
 
   let onSendMessageClick = () => {
     updateAndSendMessage(state => {
@@ -13,7 +11,8 @@ const DialogsContainer = () => {
         ...state,
         dialogs_page: {
           ...state.dialogs_page,
-          messagesData: [...state.dialogs_page.messagesData, { id: 4, message: state.dialogs_page.updatedMessage, isMine: true, name: 'Anna Belyaeva' }]
+          messagesData: [...state.dialogs_page.messagesData, { id: 4, message: state.dialogs_page.updatedMessage, isMine: true, name: 'Anna Belyaeva' }],
+          updatedMessage: ''
         }
       }
     })
