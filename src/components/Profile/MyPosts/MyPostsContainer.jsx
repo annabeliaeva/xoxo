@@ -14,11 +14,11 @@ export const MyPostsContainer = (props) => {
         profile_page: {
           ...state.profile_page,
           newPostText: '',
-          postData: [...state.profile_page.postData, {
+          postData: [{
             id: 4, fullName: faker.person.fullName(),
             avatar: faker.image.avatar(), message: state.profile_page.newPostText,
             likeImage: "https://e7.pngegg.com/pngimages/22/527/png-clipart-heart-open-free-content-heart.png", likesCount: 0
-          }]
+          }, ...state.profile_page.postData,]
         }
       }
     })

@@ -1,13 +1,30 @@
 import { AppLayout } from '@/components/AppLayout/AppLayout';
 import Users from '@/components/Users/Users';
-import { PrismaManager } from '@/middleware/prismaManager';
-import { state as initialState } from '@/store'
-import { UserData } from '@/types/userData';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { UsersPage } from '../api/users';
 
-export default function UsersPage(props: UsersPage) {
+interface UsersData extends UsersPage {
+    handleClick(u: number): any;
+}
+export default function UsersPage() {
+    const router = useRouter()
 
-    const [state, setState] = useState(props.users)
+    const [usersData, setState] = useState<UsersData>({ users: [], pagination: { current: null, pagesCount: null }, handleClick(u) { } })
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            fetch(`/api/users?page=${router.query?.page ?? 1}`)
+                .then(response => response.json())
+                .then(res => setState(res))
+        }
+        fetchUsers()
+       
+    }, [router])
+
+    usersData.handleClick = (u) => {
+        router.push(`/users?page=${u}`)
+    }
 
     // let follow = (id) => {
     //   setState(state => {
@@ -33,40 +50,7 @@ export default function UsersPage(props: UsersPage) {
 
     return (
         <AppLayout>
-            <Users state={props.users} />
+            <Users {...usersData} />
         </AppLayout>
     )
-}
-
-interface UsersPage {
-    users: UserData[]
-}
-
-export async function getServerSideProps() {
-    const state = {
-        users_page: {
-            ...initialState.users_page,
-            users: [...initialState.users_page.users]
-        }
-    }
-
-    const allUsers = await PrismaManager.users.findMany()
-
-    return {
-        props: {
-            users: allUsers.map(u => {
-                return {
-                    id: u.id,
-                    age: u.age,
-                    avatar: u.avatar_url,
-                    fullName: u.name + ' ' + u.surname,
-                    location: {
-                        city: u.city,
-                        country: u.country
-                    },
-                    sex: u.sex
-                } as UserData
-            })
-        } as UsersPage
-    }
 }
