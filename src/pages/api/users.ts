@@ -14,7 +14,7 @@ export interface UsersPage {
 export default async function handler(req, res: NextApiResponse<UsersPage>) {
 
     const curPage = +req.query.page ?? 1
-    const perPage = 1
+    const perPage = 5
 
     const allUsers = await PrismaManager.users.findMany({
         skip: (curPage - 1) * perPage,

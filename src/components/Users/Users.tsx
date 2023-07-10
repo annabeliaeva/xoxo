@@ -1,7 +1,8 @@
 import { UserData } from "@/types/userData";
 import s from "./Users.module.css"
 import User from "./User/User";
-import { Container, Pagination } from "react-bootstrap";
+import { Container, Placeholder } from "react-bootstrap";
+import { PaginationFunc } from "./Pagination/PaginationFunc"
 
 interface UsersProps {
   users: UserData[],
@@ -9,19 +10,25 @@ interface UsersProps {
     current: number,
     pagesCount: number,
   },
-  handleClick(u: number): any;
+  handleClick(u: number): any,
+  isFetching: boolean
 }
 
 const Users = (props: UsersProps) => {
 
+  console.log(props)
   let pages = []
 
   for (let i = 0; i < props.pagination.pagesCount; i++) {
     pages[i] = i + 1;
   }
 
-  let users = props.users?.map(u =>
-    <User user={u} key={u.id} />)
+  let users = props.users?.map(u => {
+    return props.isFetching == true ?
+      <Placeholder bg="accent" className={s.placeholder} /> :
+      <User user={u} key={u.id} />
+  }
+  )
 
   let maxPages = 5;
 
@@ -62,60 +69,10 @@ const Users = (props: UsersProps) => {
   return <Container className={s.main}>
     {users}
     <nav className={s.nav_pages}>
-      <Pagination>
-        {pageArr.map((ele, ind) => {
-          const toReturn = []
-          if (ind == 0) {
-            toReturn.push(<Pagination.First onClick={pCurrent === 1 ? () => { } : () => props.handleClick(1)} href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </Pagination.First >)
-            toReturn.push(<Pagination.Prev onClick={pCurrent === 1 ? () => { } : () => props.handleClick(pCurrent - 1)} href="#" />)
-          }
-          if (ele === "") {
-            toReturn.push(<Pagination.Ellipsis key={ind} />)
-          }
-          else {
-            toReturn.push(
-              <Pagination.Item key={ind} active={pCurrent === ele ? true : false}
-                onClick={
-                  pCurrent === ele
-                    ? () => { }
-                    : () => {
-                      props.handleClick(ele)
-                    }}>
-                {ele}
-              </Pagination.Item>
-            )
-          }
-          if (ind === pageArr.length - 1) {
-            toReturn.push(
-              <Pagination.Next
-                key={"nextpage"}
-                onClick={
-                  pCurrent === ele
-                    ? () => { }
-                    : () => {
-                      props.handleClick(pCurrent + 1);
-                    }
-                }
-              />
-            );
-            toReturn.push(
-              <Pagination.Last
-                key={"lastpage"}
-                onClick={
-                  pCurrent === ele
-                    ? () => { }
-                    : () => {
-                      props.handleClick(ele);
-                    }
-                }
-              />
-            );
-          }
-          return toReturn
-        })}
-      </Pagination>
+      <PaginationFunc pCurrent={pCurrent}
+        pTotal={pTotal}
+        handleClick={props.handleClick}
+        pageArr={pageArr} />
     </nav>
   </Container>
 
