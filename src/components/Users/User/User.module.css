@@ -19,3 +19,13 @@
     align-self: center;
     width: 100px;
 }
+
+.fullname_link{
+    color: black;
+    text-decoration: none;
+    padding: 0px;
+}
+
+.fullname_link:hover{
+    color: #c46062
+}

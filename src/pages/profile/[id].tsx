@@ -26,18 +26,15 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     return {
         props: {
             user: {
-                id: ctx.query.id,
-                user: {
-                    id: user.id,
-                    age: user.age,
-                    avatar: user.avatar_url,
-                    fullName: user.name + ' ' + user.surname,
-                    location: {
-                        city: user.city,
-                        country: user.country
-                    },
-                    sex: user.sex
-                } as UserData
+                id: user.id,
+                age: user.age,
+                avatar: user.avatar_url,
+                fullName: user.name + ' ' + user.surname,
+                location: {
+                    city: user.city,
+                    country: user.country
+                },
+                sex: user.sex
             },
             state
         }
@@ -46,10 +43,9 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 }
 
 export default function HomePage(props) {
-    console.log(props.user)
     return (
         <AppLayout>
-            <Profile {...props.user} id={props.id} />
+            <Profile {...props} />
         </AppLayout>
     )
 }

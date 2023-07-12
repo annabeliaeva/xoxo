@@ -1,24 +1,27 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
 import { Col, Container, Row } from "react-bootstrap";
+import { UserData } from "@/types/userData";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props: UserData) => {
+
+  console.log(props)
   return (
     <Container>
       <Row>
         <Col >
           <img
             className={`${s.avatar}`}
-            src='http://www.ytcovers.ru/wp-content/uploads/2016/12/art-skull.png'
+            src={props.avatar}
             alt='Shapka' />
         </Col>
         <Col xs={6}>
           <div className={`${s.infoBlock}`}>
             <div className={s.full_name}>
-              Anna Belyaeva
+              {props.fullName}
             </div>
             <div>
-              Saint-Petersburg, Russia
+              {props.location.city}, {props.location.country}
             </div>
           </div>
         </Col>

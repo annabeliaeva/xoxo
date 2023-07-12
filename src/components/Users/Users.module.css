@@ -6,10 +6,6 @@
     gap: 12px
 }
 
-.user_element {
-    flex-direction: row;
-}
-
 .nav_pages{
     align-self: center;
 }
