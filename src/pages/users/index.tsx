@@ -2,9 +2,9 @@ import { AppLayout } from '@/components/AppLayout/AppLayout';
 import Users from '@/components/Users/Users';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { UsersPage } from '../api/users';
+import { UsersPage as UsersPageProps } from '../api/users';
 
-interface UsersData extends UsersPage {
+interface UsersData extends UsersPageProps {
     handleClick(u: number): any;
     isFetching: boolean;
 }

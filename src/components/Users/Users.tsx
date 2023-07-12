@@ -1,7 +1,7 @@
 import { UserData } from "@/types/userData";
 import s from "./Users.module.css"
 import User from "./User/User";
-import { Container, Placeholder } from "react-bootstrap";
+import { Col, Container, Placeholder, Row } from "react-bootstrap";
 import { PaginationFunc } from "./Pagination/PaginationFunc"
 
 interface UsersProps {
@@ -16,19 +16,26 @@ interface UsersProps {
 
 const Users = (props: UsersProps) => {
 
-  console.log(props)
   let pages = []
 
   for (let i = 0; i < props.pagination.pagesCount; i++) {
-    pages[i] = i + 1;
+    pages.push(i + 1);
   }
 
   let users = props.users?.map(u => {
-    return props.isFetching == true ?
-      <Placeholder bg="accent" className={s.placeholder} /> :
-      <User user={u} key={u.id} />
+    return <Row key={u.id} className="gy-2 mx-auto">
+        <User user={u} key={u.id} />
+    </Row>
   }
   )
+
+  let placeholders = []
+  for (let i = 0; i < 10; i++) {
+    placeholders.push(<Row className="mx-auto">
+      <Placeholder bg="primary" key={i} className={`${s.placeholder} gy-2`} animation="wave" />
+    </Row>)
+  }
+
 
   let maxPages = 5;
 
@@ -66,14 +73,16 @@ const Users = (props: UsersProps) => {
     }
   }
 
-  return <Container className={s.main}>
-    {users}
-    <nav className={s.nav_pages}>
+  return <Container fluid  >
+    <Row >
+      {props.isFetching ? placeholders : users}
+    </Row>
+    <Row className="mx-auto">
       <PaginationFunc pCurrent={pCurrent}
         pTotal={pTotal}
         handleClick={props.handleClick}
         pageArr={pageArr} />
-    </nav>
+    </Row>
   </Container>
 
 }

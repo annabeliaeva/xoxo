@@ -9,8 +9,8 @@ $danger: #d62518;
 $light: #f8f9fa;
 $dark: #343a40;
 $purple: #301b33;
-$light_grey: #f0f0f0
-;
+$light_grey: #f0f0f0;
+$pink: #ffc7c7;
 
 
 //custom color to be mapped
@@ -27,6 +27,7 @@ $theme-colors: (
   light: $light,
   dark: $dark,
   purple: $purple,
+  pink: $pink,
 // add any additional color below
   accent: $accent,
   light_grey: $light_grey

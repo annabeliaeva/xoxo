@@ -5,10 +5,10 @@ export const PaginationFunc = (props) =>{
         {props.pageArr.map((ele, ind) => {
           const toReturn = []
           if (ind == 0) {
-            toReturn.push(<Pagination.First onClick={props.pCurrent === 1 ? () => { } : () => props.handleClick(1)} href="#" aria-label="Previous">
+            toReturn.push(<Pagination.First key={10} onClick={props.pCurrent === 1 ? () => { } : () => props.handleClick(1)} href="#" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </Pagination.First >)
-            toReturn.push(<Pagination.Prev onClick={props.pCurrent === 1 ? () => { } : () => props.handleClick(props.pCurrent - 1)} href="#" />)
+            toReturn.push(<Pagination.Prev key={11} onClick={props.pCurrent === 1 ? () => { } : () => props.handleClick(props.pCurrent - 1)} href="#" />)
           }
           if (ele === "") {
             toReturn.push(<Pagination.Ellipsis key={ind} />)
