@@ -5,7 +5,6 @@ import { UserData } from "@/types/userData";
 
 const ProfileInfo = (props: UserData) => {
 
-  console.log(props)
   return (
     <Container>
       <Row>
