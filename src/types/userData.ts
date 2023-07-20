@@ -7,5 +7,8 @@ export interface UserData {
     location: {
         country: string;
         city: string;
-    };
+    },
+    email: string,
+    username: string,
+    password: string
 }

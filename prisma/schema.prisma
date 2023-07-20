@@ -15,5 +15,8 @@ model users {
   sex        String @db.VarChar(10)
   country    String @db.VarChar(50)
   city       String @db.VarChar(30)
+  email      String @db.VarChar(30)
+  username   String @db.VarChar(20)
+  password   String @db.VarChar(30)
   avatar_url String @default("https://i.pinimg.com/originals/a8/8b/b6/a88bb6c1cbeeafe541d381d6d15d23d1.jpg") @db.VarChar(150)
 }

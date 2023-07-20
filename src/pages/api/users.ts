@@ -37,7 +37,9 @@ export default async function handler(req, res: NextApiResponse<UsersPage>) {
                         city: u.city,
                         country: u.country
                     },
-                    sex: u.sex
+                    sex: u.sex,
+                    email: u.email,
+                    password: u.password
                 } as UserData
             }),
         pagination: {

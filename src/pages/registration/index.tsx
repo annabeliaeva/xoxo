@@ -1,18 +1,6 @@
 import { Registration } from "@/components/Registration/Registration";
 import { useMutation } from "react-query";
 
-interface RegData {
-    firstName: string;
-    lastName: string;
-    country: string;
-    city: string;
-    sex: string;
-    bday: string;
-    email: string;
-    username: string;
-    password: string;
-}
-
 
 export default function AuthorizationPage() {
 
@@ -35,18 +23,11 @@ export default function AuthorizationPage() {
         })
     }
 
-    const mutation = useMutation((data: {[k:string]: FormDataEntryValue}) => sendRegData(data))
+    const mutation = useMutation((data: { [k: string]: FormDataEntryValue }) => sendRegData(data))
 
-    const onSubmit = (e: { preventDefault: () => void; target: HTMLFormElement; }) => {
-        e.preventDefault()
-        const formData = new FormData(e.target)
-        const fields = Object.fromEntries(formData)
-        // Passing variables to MY mutatuon function (sendRegData)
-        // and triggering sending 
-        mutation.mutate(fields)
-
-        // clear form fields
-        e.target.reset()
+    const onSubmit = (values, actions) => {
+        mutation.mutate(values)
+        actions.resetForm()
     }
 
 
