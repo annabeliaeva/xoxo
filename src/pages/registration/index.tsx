@@ -16,20 +16,9 @@ interface RegData {
 
 export default function AuthorizationPage() {
 
-    const onSubmit = (e) => {
-
-        e.preventDefault()
-
-        const formData = new FormData(e.target)
-        const fields = Object.fromEntries(formData)
-        mutation.mutate(fields)
-        e.target.reset
-    }
-
-    const mutation = useMutation((data) => sendRegData(data))
-
     let sendRegData = async (data) => {
 
+        // posting data to server
         return fetch('/api/register', {
             method: "post",
             body: JSON.stringify({
@@ -45,6 +34,22 @@ export default function AuthorizationPage() {
             })
         })
     }
+
+    const mutation = useMutation((data: {[k:string]: FormDataEntryValue}) => sendRegData(data))
+
+    const onSubmit = (e: { preventDefault: () => void; target: HTMLFormElement; }) => {
+        e.preventDefault()
+        const formData = new FormData(e.target)
+        const fields = Object.fromEntries(formData)
+        // Passing variables to MY mutatuon function (sendRegData)
+        // and triggering sending 
+        mutation.mutate(fields)
+
+        // clear form fields
+        e.target.reset()
+    }
+
+
     return (
         <Registration onSubmit={onSubmit} />
     )
