@@ -1,4 +1,4 @@
-import { Button, Card, Col, Container, FloatingLabel, Form, FormCheck, FormGroup, InputGroup, Row } from "react-bootstrap"
+import { Button, Card, Col, Container, FloatingLabel, Form, Row } from "react-bootstrap"
 import s from './Registration.module.css'
 import * as formik from 'formik';
 import * as yup from 'yup';
@@ -6,6 +6,9 @@ import * as yup from 'yup';
 export const Registration = ({ onSubmit }) => {
 
     const { Formik } = formik;
+
+    const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
+    // min 5 characters, 1 upper case letter, 1 numeric digit.
 
     const schema = yup.object().shape({
         firstName: yup.string().required("this field is required"),
@@ -15,7 +18,8 @@ export const Registration = ({ onSubmit }) => {
         country: yup.string().required("this field is required"),
         email: yup.string().required("this field is required"),
         sex: yup.string().required("this field is required"),
-        password: yup.string().required("this field is required")
+        password: yup.string().required("No password provided").matches(passwordRules, 'Password can only contain Latin letters, have min 5 characters, , 1 upper case letter, 1 numeric digit'),
+        confirmPassword: yup.string().oneOf([yup.ref("password"), null], "Passwords must match").required("Required"),
     });
 
 
@@ -30,7 +34,8 @@ export const Registration = ({ onSubmit }) => {
             country: '',
             email: '',
             sex: '',
-            password: ''
+            password: '',
+            confirmPassword: ''
         }}
     >
         {({ touched, errors, values, handleChange, handleSubmit }) => (<section className={`vh-100 ${s.gradient_custom}`}>
@@ -196,8 +201,18 @@ export const Registration = ({ onSubmit }) => {
                                         </Col>
                                         <Col className="md-6 mb-4">
                                             <FloatingLabel label="Password again" >
-                                                <Form.Control className="lg" type="password" name="password" placeholder="Username">
-                                                </Form.Control>
+                                                <Form.Control
+                                                    className="lg"
+                                                    type="password"
+                                                    name="confirmPassword"
+                                                    placeholder="confirmPassword"
+                                                    value={values.confirmPassword}
+                                                    onChange={handleChange}
+                                                    isValid={touched.confirmPassword && !errors.confirmPassword}
+                                                    isInvalid={!!errors.confirmPassword} />
+                                                <Form.Control.Feedback type="invalid">
+                                                    <>{errors.confirmPassword}</>
+                                                </Form.Control.Feedback>
                                             </FloatingLabel>
                                         </Col>
                                     </Row>
