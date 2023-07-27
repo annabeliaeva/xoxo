@@ -13,7 +13,12 @@ export const Registration = ({ onSubmit }) => {
     const schema = yup.object().shape({
         firstName: yup.string().required("this field is required"),
         lastName: yup.string().required("this field is required"),
-        username: yup.string().required("this field is required"),
+        username: yup.string().required("this field is required").test('Unique username', 'username already exists, please type another', async (value) => {
+            let resp = await fetch(`/api/checkusername?username=${value}`).then(response => response.json())
+
+            console.log(resp.exists)
+            return resp.exists == 0
+        }),
         city: yup.string().required("this field is required"),
         country: yup.string().required("this field is required"),
         email: yup.string().required("this field is required"),

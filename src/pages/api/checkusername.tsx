@@ -6,20 +6,18 @@ import UsersPage from "../users";
 
 export default async function handler(req, res) {
 
-    let userId = 0;
-    let data = JSON.parse(req.body)
+    let data = req.query.username
     const user = await PrismaManager.users.findFirst({
-        where: { username: data.username }
+        where: { username: data }
     })
-
-    userId = user?.id
-    if (userId == 0)
+    console.log(user)
+    if (user!= null)
         return res.json({
-            exists: 0
+            exists: 1
         })
     else
         return res.json({
-            exists: 1
+            exists: 0
         })
 
 

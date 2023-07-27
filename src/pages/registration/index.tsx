@@ -25,15 +25,8 @@ export default function AuthorizationPage() {
 
     const mutation = useMutation((data: { [k: string]: FormDataEntryValue }) => sendRegData(data))
 
-    const onSubmit = (values, actions) => {
-
-        let exists = fetch('/api/username', {
-            method: "post", body: JSON.stringify({
-                username: values.username
-            })
-        }).then(response => response.json())
-
-        console.log(exists)
+    const onSubmit = async (values, actions) => {
+        
         mutation.mutate(values)
         actions.resetForm()
     }
