@@ -1,8 +1,4 @@
 import { PrismaManager } from "@/middleware/prismaManager"
-import { UserData } from '@/types/userData';
-import { NextApiResponse } from "next";
-import UsersPage from "../users";
-
 
 export default async function handler(req, res) {
 

@@ -1,42 +1,38 @@
-import { NextApiResponse } from 'next';
+import { NextApiResponse } from 'next'
 import { PrismaManager } from "@/middleware/prismaManager"
-import bcrypt from 'bcrypt'
+import { hashPassword } from '@/tools/hashPassword'
+import { schema } from '@/tools/yupSchema'
 
 export default async function handler(req, res: NextApiResponse) {
 
-    const hashPassword = async (password, saltRounds = 10) => {
-        try {
-            // Generate a salt
-            const salt = await bcrypt.genSalt(saltRounds)
-            
-            // Hash password
-            return await bcrypt.hash(password, salt)
-        } catch (error) {
-            console.log(error)
+    let data = JSON.parse(req.body)
+    data.age = 23
+
+    try {
+        // Validate the form data using a custom Schema
+        let validatedData = await schema.validate(data).then(data => data)
+        let hashedPass = await hashPassword(validatedData.password)
+        const user = await PrismaManager.users.create({
+            data: {
+                age: 23,
+                name: validatedData.firstName,
+                surname: validatedData.lastName,
+                city: validatedData.city,
+                country: validatedData.country,
+                sex: validatedData.sex,
+                username: validatedData.username,
+                email: validatedData.email,
+                password: hashedPass
+            }
+        })
+    }
+    catch (errors: any) {
+        console.log(errors);
+        
+        if (errors) {
+            console.log(errors)
         }
         
-        // Return null if error
-        return null
+        return res.json({ ok: "ok" })
     }
-    
-    let data = JSON.parse(req.body)
-
-    let hashedPass = await hashPassword(data.password)
-    const user = await PrismaManager.users.create({
-        data: {
-            age: 23,
-            name: data.firstName,
-            surname: data.lastName,
-            city: data.city,
-            country: data.country,
-            sex: data.sex,
-            username: data.username,
-            email: data.email,
-            password: hashedPass
-        }
-    })
-
-
-    return res.json({ ok: "ok" })
-
 }
