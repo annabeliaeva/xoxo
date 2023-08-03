@@ -9,7 +9,6 @@ export const schema = yup.object().shape({
     username: yup.string().required("this field is required").test('Unique username', 'username already exists, please type another', async (value) => {
         let resp = await fetch(`/api/checkusername?username=${value}`).then(response => response.json())
 
-        console.log(resp.exists)
         return resp.exists == 0
     }),
     city: yup.string().required("this field is required"),
