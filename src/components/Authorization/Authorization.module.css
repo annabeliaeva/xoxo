@@ -9,6 +9,10 @@
     background: linear-gradient(to bottom right, #ffc7c7, rgba(245, 87, 108, 1))
 }
 
+.link_style{
+    text-decoration: none;
+}
+
 .card_registration {
     border-radius: 15px;
 }
