@@ -2,7 +2,7 @@ import Link from "next/link"
 import s from './Authorization.module.css'
 import { Button, Card, Col, Container, FloatingLabel, Form, Row } from "react-bootstrap"
 
-export const Authorization = () => {
+export const Authorization = ({onSubmit}) => {
     return <section className={`vh-100 ${s.gradient_custom}`}>
         <Container fluid className="justify-content-center align-items-center h-100 d-flex py-5">
             <Row className="justify-content-center align-items-center h-100">
@@ -10,7 +10,7 @@ export const Authorization = () => {
                     <Card className={`shadow-2-strong w-70 ${s.card_registration}`}>
                         <Card.Body className="p-4 p-md-5">
                             <Card.Title className={`mb-4 pb-2 pb-md-0 ${s.title}`}>Sign In</Card.Title>
-                            <Form>
+                            <Form  onSubmit={(e) => onSubmit(e)}>
                                 <Row >
                                     {/* <Col className="md-9 lg-6 xl-5">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
@@ -18,23 +18,23 @@ export const Authorization = () => {
                 </Col> */}
                                     <Col>
                                         <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
-                                            <Form.Control type="email" placeholder="name@example.com" />
+                                            <Form.Control name="email" type="email" placeholder="name@example.com" />
                                         </FloatingLabel>
                                         <FloatingLabel controlId="floatingInput" label="Password" className="mb-3">
-                                            <Form.Control type="password" placeholder="Password" />
+                                            <Form.Control name="password" type="password" placeholder="Password" />
                                         </FloatingLabel>
                                     </Col>
                                 </Row>
                                 <Row >
                                     <Col className={s.column}>
-                                        <Button className={`btn btn-primary btn-lg`}>Login</Button>
+                                        <Button type="submit" className={`btn btn-primary btn-lg`}>Login</Button>
                                     </Col>
                                 </Row>
                             </Form>
                             <Card.Footer className="my-2">
                                 <Col> Do not have an account?</Col>
                                 <Col className="text-accent">
-                                    <Link href="/registration" className="link-accent">Register</Link>
+                                    <Link href="/registration" className={`${s.link_style} link-accent`}>Register</Link>
                                 </Col>
                             </Card.Footer>
                         </Card.Body>

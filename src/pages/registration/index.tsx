@@ -26,7 +26,7 @@ export default function AuthorizationPage() {
     const mutation = useMutation((data: { [k: string]: FormDataEntryValue }) => sendRegData(data))
 
     const onSubmit = async (values, actions) => {
-        
+    
         mutation.mutate(values)
         actions.resetForm()
     }
