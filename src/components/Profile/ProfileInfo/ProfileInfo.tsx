@@ -1,4 +1,3 @@
-import React from "react";
 import s from "./ProfileInfo.module.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { UserData } from "@/types/userData";

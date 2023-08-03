@@ -1,7 +1,6 @@
-import React from "react";
 
-import s from "./Navbar.module.css";
-import { NavbarLink } from "./NavbarLink";
+import s from "./Navbar.module.css"
+import { NavbarLink } from "./NavbarLink"
 
 const Navbar = () => {
   return (<nav className={`${s.nav}`}>

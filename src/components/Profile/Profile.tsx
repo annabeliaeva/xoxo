@@ -1,4 +1,3 @@
-import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from './Profile.module.css'
 import { Container, Row } from "react-bootstrap";
