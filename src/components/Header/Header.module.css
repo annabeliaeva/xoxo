@@ -16,3 +16,14 @@
 .header img {
   width: 60px;
 }
+
+.link_style {
+  text-decoration: none;
+  color:  #c46062;
+}
+
+.link_style:hover{
+  color: black
+}
+
+
