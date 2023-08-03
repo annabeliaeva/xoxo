@@ -27,10 +27,12 @@ body {
 }
 
 .flex-center {
+  display: flex;
   justify-content: center;
 }
 
 .flex-align-center {
+  display: flex;
   align-items: center;
 }
 

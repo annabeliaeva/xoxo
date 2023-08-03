@@ -29,11 +29,11 @@ export const Registration = ({ onSubmit }) => {
                         <Card className={`shadow-2-strong ${s.card_registration}`}>
                             <Card.Body className="p-4 p-md-5">
                                 <Card.Title className={`mb-4 pb-2 pb-md-0 mb-md-5 ${s.title}`}>Sign Up</Card.Title>
-                                <Form noValidate onSubmit={handleSubmit}>
+                                <Form autoComplete="none" noValidate onSubmit={handleSubmit}>
                                     <Row>
                                         <Col className="md-6 mb-4">
                                             <FloatingLabel label="First Name" >
-                                                <Form.Control
+                                                <Form.Control autoComplete="off"
                                                     id="firstName"
                                                     value={values.firstName}
                                                     onChange={handleChange}
@@ -42,7 +42,7 @@ export const Registration = ({ onSubmit }) => {
                                                     name="firstName"
                                                     placeholder="First Name"
                                                     isValid={touched.firstName && !errors.firstName}
-                                                    isInvalid={!!errors.firstName} />
+                                                    isInvalid={touched.firstName && !!errors.firstName} />
                                                 <Form.Control.Feedback type="invalid">
                                                     <>{errors.firstName}</>
                                                 </Form.Control.Feedback>
@@ -59,7 +59,7 @@ export const Registration = ({ onSubmit }) => {
                                                     name="lastName"
                                                     placeholder="Last Name"
                                                     isValid={touched.lastName && !errors.lastName}
-                                                    isInvalid={!!errors.lastName} />
+                                                    isInvalid={touched.lastName && !!errors.lastName} />
                                                 <Form.Control.Feedback type="invalid">
                                                     <>{errors.lastName}</>
                                                 </Form.Control.Feedback>
@@ -77,7 +77,7 @@ export const Registration = ({ onSubmit }) => {
                                                     value={values.country}
                                                     onChange={handleChange}
                                                     isValid={touched.country && !errors.country}
-                                                    isInvalid={!!errors.country} />
+                                                    isInvalid={touched.country && !!errors.country} />
                                                 <datalist id="datalistOptions" placeholder="Country" className="lg">
                                                     <option value="Russia">Russia</option>
                                                     <option value="UK">UK</option>
@@ -99,7 +99,7 @@ export const Registration = ({ onSubmit }) => {
                                                     value={values.city}
                                                     onChange={handleChange}
                                                     isValid={touched.city && !errors.city}
-                                                    isInvalid={!!errors.city} />
+                                                    isInvalid={touched.city && !!errors.city} />
                                                 <Form.Control.Feedback type="invalid">
                                                     <>{errors.city}</>
                                                 </Form.Control.Feedback>
@@ -121,12 +121,12 @@ export const Registration = ({ onSubmit }) => {
                                             <div key="inline-radio" id="sex" className="mb-3">
                                                 <Form.Check
                                                     onChange={handleChange}
-                                                    isValid={values.sex == 'Female' || values.sex == 'Male'}
+                                                    isValid={touched.sex && values.sex == 'Female' || values.sex == 'Male'}
                                                     isInvalid={touched.sex && values.sex != 'Female' && values.sex != 'Male'} inline label="Female" value="Female"
                                                     name="sex" type="radio" />
                                                 <Form.Check
                                                     onChange={handleChange}
-                                                    isValid={values.sex == 'Female' || values.sex == 'Male'}
+                                                    isValid={touched.sex && values.sex == 'Female' || values.sex == 'Male'}
                                                     isInvalid={touched.sex && values.sex != 'Female' && values.sex != 'Male'} inline label="Male" value="Male"
                                                     name="sex" type="radio" />
                                             </div>
@@ -143,7 +143,7 @@ export const Registration = ({ onSubmit }) => {
                                                     value={values.email}
                                                     onChange={handleChange}
                                                     isValid={touched.email && !errors.email}
-                                                    isInvalid={!!errors.email} />
+                                                    isInvalid={touched.email && !!errors.email} />
                                                 <Form.Control.Feedback type="invalid">
                                                     <>{errors.email}</>
                                                 </Form.Control.Feedback>
@@ -159,7 +159,7 @@ export const Registration = ({ onSubmit }) => {
                                                     value={values.username}
                                                     onChange={handleChange}
                                                     isValid={touched.username && !errors.username}
-                                                    isInvalid={!!errors.username} />
+                                                    isInvalid={touched.username && !!errors.username} />
                                                 <Form.Control.Feedback type="invalid">
                                                     <>{errors.username}</>
                                                 </Form.Control.Feedback>
@@ -177,7 +177,7 @@ export const Registration = ({ onSubmit }) => {
                                                     value={values.password}
                                                     onChange={handleChange}
                                                     isValid={touched.password && !errors.password}
-                                                    isInvalid={!!errors.password} />
+                                                    isInvalid={touched.password && !!errors.password} />
                                                 <Form.Control.Feedback type="invalid">
                                                     <>{errors.password}</>
                                                 </Form.Control.Feedback>
@@ -193,7 +193,7 @@ export const Registration = ({ onSubmit }) => {
                                                     value={values.confirmPassword}
                                                     onChange={handleChange}
                                                     isValid={touched.confirmPassword && !errors.confirmPassword}
-                                                    isInvalid={!!errors.confirmPassword} />
+                                                    isInvalid={touched.confirmPassword && !!errors.confirmPassword} />
                                                 <Form.Control.Feedback type="invalid">
                                                     <>{errors.confirmPassword}</>
                                                 </Form.Control.Feedback>

@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const user = await PrismaManager.users.findFirst({
         where: { username: data }
     })
-    console.log(user)
+
     if (user!= null)
         return res.json({
             exists: 1
